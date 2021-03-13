@@ -10,7 +10,6 @@ def romanian_form_int(number):
         number -= digits[i] * counter
     return ''.join(romanian_digit)
 
-
 name_hero = []
 vowel = ['i', 'y', 'e', 'u', 'o', 'a']
 consonat = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'r', 's', 't', 'w', 'z']
@@ -37,6 +36,7 @@ for letter in range(name_lenght):
         else:
             name_hero.append(random.choice(consonat))
             consonat_counter += 1
+
     if letter > 0:
         last_two = f"{name_hero[letter-1]}{name_hero[letter]}"
         while name_hero[letter-1] == name_hero[letter] or forbidden.count(last_two)>0:
