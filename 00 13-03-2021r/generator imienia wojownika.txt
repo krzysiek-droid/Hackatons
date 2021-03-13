@@ -1,0 +1,4 @@
+Program z dwóch wprowadzonych list spółgłosek i samogłosek generuje imie wojownika z założeniem
+że w imieniu:
+ - mogą wystepować max. 2 spółgłoski obok siebie;
+ - nie może być więcej niż 1 samogłoski obok siebie;
