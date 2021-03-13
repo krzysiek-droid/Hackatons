@@ -45,13 +45,11 @@ for letter in range(name_lenght):
     while name_hero[0] == 'y':
         name_hero[0] = random.choice(vowel)
 
-
-
-name_hero_final = "".join(name_hero)
+name_hero_final = "".join(name_hero).capitalize()
 
 nickname_few = ['Belfer', 'Krzywousty', 'Menzurka', 'Rębajło', 'Sabała', 'Sierotka', 'Szary', 'Śmieszek']
-nickname = random.choice(nickname_few)
+nickname = random.choice(nickname_few).capitalize()
 
 
-print(f"Randomly generated nickname of Your character is: {name_hero_final.title()} {romanian_form_int(5)} {nickname}")
+print(f"\nRandomly generated nickname of Your character is: {name_hero_final.title()} {romanian_form_int(5)} {nickname}")
 
