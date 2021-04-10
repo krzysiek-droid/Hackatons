@@ -136,14 +136,14 @@ def fight(monster_health, monster_attack):
             monster_health -= random.randint(0, Hf.hero_read("Attack"))
             Hf.hero_update('Health', Hf.hero_read('Health') - random.randint(0, monster_attack))
         else:
-            if input('Your health is 30% ora lower. Do you want to continue fight? Y/N: ').upper() == 'Y':
+            if input('Your health is 30% or lower. Do you want to continue fight? Y/N: ').upper() == 'Y':
                 while Hf.hero_read('Health') > 0:
                     monster_health -= random.randint(0, Hf.hero_read("Attack"))
                     Hf.hero_update('Health', Hf.hero_read('Health') - random.randint(0, monster_attack))
                 if monster_health > Hf.hero_read('Health'):
-                    return 'win'
-                else:
                     return 'lose'
+                else:
+                    return 'win'
 
 
 def dungeon_story():
@@ -195,4 +195,4 @@ def dungeon_story():
                 else:
                     print('You have see a squirrel but he run away very fast!')
         else:
-            print(f'There in nothing around...')
+            print(f'There is nothing around...')

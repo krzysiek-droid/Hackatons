@@ -1,4 +1,6 @@
 # Co-author Wojciech Fryzowicz
+import json
+
 import Main_menu as Mm
 import Instances as inst
 import Hero_functions as Hf
@@ -6,6 +8,7 @@ import Hero_functions as Hf
 
 def hero_definition():
     print("Let's create a hero!")
+    Hf.base_stats_reset()
     hero = Hf.create_hero()
     for stat in hero:
         Hf.hero_update(stat, hero[stat])

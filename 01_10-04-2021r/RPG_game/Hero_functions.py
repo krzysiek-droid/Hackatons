@@ -2,8 +2,22 @@
 import json
 import Name_generator as Ng
 
+base_stats = {"Name": "", "Race": "", "Gender": "", "Health": 100, "Energy": 10, "Attack": 2, "Defense": 5,
+              "Gold": "50",
+              "Weapon": "stick", "Equipment": ["apple"]}
 races = ["1. Gnome", "2. Elf", "3. Human", "4. Dwarf"]
 genders = ["1. Male", "2. Female"]
+
+
+def base_stats_reset():
+    with open('Hero', 'r') as read:
+        hero = json.load(read)
+        read.close()
+        for stat in hero:
+            hero[stat] = base_stats[stat]
+    with open('Hero', 'w') as write:
+        json.dump(hero, write)
+        write.close()
 
 
 def create_hero():
@@ -23,11 +37,11 @@ def create_hero():
 
 def hero_update(key, value):
     with open('Hero', 'r') as red:
-        object = json.load(red)
+        object1 = json.load(red)
         red.close()
-    object[key] = value
+    object1[key] = value
     with open('Hero', 'w') as written:
-        json.dump(object, written)
+        json.dump(object1, written)
         written.close()
 
 
@@ -42,8 +56,7 @@ def hero_stats():
     with open('Hero', 'r') as fop:
         hero = json.load(fop)
         fop.close()
-        statistics = []
-        print('*'*177, '\n')
+        print('*' * 177, '\n')
         for stat in hero:
             print(f'{stat}: {hero[stat]}', end=', ')
         print('\n')
