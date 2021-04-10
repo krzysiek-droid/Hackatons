@@ -1,5 +1,6 @@
-# Praca grupowa: Krzysztof Fryzowicz oraz Wojciech Fryzowicz
+# Co-author: Wojciech Fryzowicz
 import random
+import Hero_functions as Hf
 
 
 def romanian_form_int(number):
@@ -13,7 +14,7 @@ def romanian_form_int(number):
     return ''.join(romanian_digit)
 
 
-def generate_name():
+def generate_first_name():
     name_hero = []
     vowel = ['i', 'y', 'e', 'u', 'o', 'a']
     consonat = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'r', 's', 't', 'w', 'z']
@@ -50,7 +51,17 @@ def generate_name():
             name_hero[0] = random.choice(vowel)
 
     name_hero_final = "".join(name_hero).capitalize()
+    return name_hero_final
 
+
+def generate_name(gender):
+    name_hero_final = generate_first_name()
+    if gender == Hf.genders[0]:
+        while name_hero_final[-1] == 'a':
+            name_hero_final = generate_first_name()
+    else:
+        while not name_hero_final[-1] == 'a':
+            name_hero_final = generate_first_name()
     nickname_few = ['Belfer', 'Krzywousty', 'Menzurka', 'Rębajło', 'Sabała', 'Sierotka', 'Szary', 'Śmieszek']
     nickname = random.choice(nickname_few).capitalize()
 
