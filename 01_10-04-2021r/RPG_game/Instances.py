@@ -144,6 +144,8 @@ def fight(monster_health, monster_attack):
                     return 'lose'
                 else:
                     return 'win'
+            else:
+                return 'lose'
 
 
 def dungeon_story():
