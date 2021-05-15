@@ -3,7 +3,7 @@ import json
 import Name_generator as Ng
 
 base_stats = {"Name": "", "Race": "", "Gender": "", "Health": 100, "Energy": 10, "Attack": 2, "Defense": 5,
-              "Gold": "50",
+              "Gold": 50,
               "Weapon": "stick", "Equipment": ["apple"]}
 races = ["1. Gnome", "2. Elf", "3. Human", "4. Dwarf"]
 genders = ["1. Male", "2. Female"]
@@ -20,10 +20,17 @@ def base_stats_reset():
         write.close()
 
 
+def printing_table(data):
+    for element in data:
+        print(f'{element}    ', end='')
+
+
 def create_hero():
-    print(f'Possible races: {races}')
-    race = races[int(input("Insert race of your hero: ")) - 1]
-    print(f'Possible genders: {genders} ')
+    print(f'Possible races: ')
+    printing_table(races)
+    race = races[int(input("Insert race for your hero: ")) - 1]
+    print(f'Possible genders: ')
+    printing_table(genders)
     gender = genders[int(input("Insert gender for Your hero: ")) - 1]
     name = Ng.generate_name(gender)
     print(f'Your random name is: {name}')
@@ -61,3 +68,6 @@ def hero_stats():
             print(f'{stat}: {hero[stat]}', end=', ')
         print('\n')
         print('*' * 177)
+
+def stats_show():
+    print(f'Gold: {hero_read("Gold")}')

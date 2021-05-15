@@ -23,15 +23,19 @@ def blacksmith_shop():
         items_cost.append(item["Gold"])
 
     for weapon_cost in items_cost:
-        if Hf.hero_read("Gold") < weapon_cost:
+        if int(Hf.hero_read("Gold")) < weapon_cost:
             print("Unfortunately You do not have sufficient Gold for any weapon. Come back when You will earn more "
                   "gold.")
             return 0
 
-
+def actions_choice():
+    for instance in instances:
+        print(f'{instance}    ', end='')
+    print('\n')
 def city():
-    print(f'\nWelcome in the city of Utopia, {Hf.hero_read("Name")}. What would You like to do ?:    ')
-    print(f'Possible actions: {instances}')
+    print(f'\nWelcome in the city of Utopia, {Hf.hero_read("Name")}. What would You like to do ?')
+    actions_choice()
+    print("To which place You want to go ?")
     user_choice = int(input('Take me to: '))
     return user_choice - 1
 
