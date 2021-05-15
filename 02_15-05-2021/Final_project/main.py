@@ -19,14 +19,14 @@ class Filechooser(Screen):
     def select(self, *args):
         try:
             self.label.text = args[1][0]
-            return self.label.text
+            print(self.label.text)
         except:
             pass
 
 
 class UserInterface(Screen):
     def LoadData(self, *args):
-        return show_popup()
+        value = show_popup()
 
 
 def show_popup():
@@ -34,19 +34,9 @@ def show_popup():
     popupWindow = Popup(title="Chose a file", title_align="center", content=show)
     popupWindow.open()
 
+
 class Porosity(App):
     def build(self):
-        # self.screen_manager = ScreenManager()
-        #
-        # self.first_page = UserInterface()
-        # screen = Screen(name="FirstPage")
-        # screen.add_widget(self.first_page)
-        # self.screen_manager.add_widget(screen)
-        #
-        # self.SelectPage = Filechooser()
-        # screen = Screen(name="Selecting Page")
-        # screen.add_widget(self.SelectPage)
-        # self.screen_manager.add_widget(screen)
         return UserInterface()
 
 
