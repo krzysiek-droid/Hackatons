@@ -1,0 +1,12 @@
+Program wykorzystuje bilbiotekę kivy do stworzenia interfejsu użytkownika. Interfejs na tą chwilę pozwala na:
+    wybranie pliku, który ma zostac później obrobiony
+    załadowanie ściężki do pliku do zmienne label
+
+Kolejnym krokiem będzie:
+    Otwarcie pliku
+    Odczyt danych
+    Obróbka danych pod kątem histogramu
+    Stworzenie histogramu
+    Wyświetlenie histogramu w oknie
+    Dodanie przycisków funkcyjny do zapisu histogramu jako jpg/png etc.
+
