@@ -6,42 +6,48 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
 from kivy.uix.widget import Widget
 from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.uix.popup import Popup
 
 kivy.require("2.0.0")
 
-class Filechooser(BoxLayout):
+class Widgets(Widget):
+    def button(self):
+        show_popup()
+
+class Filechooser(Screen):
     def select(self, *args):
         try:
             self.label.text = args[1][0]
+            return self.label.text
         except:
             pass
 
 
-# class LoadingFileData(Widget):
-#     def selected(self, filename):
-#         try:
-#             self.ids.my_image.source = filename[0]
-#         except:
-#             pass
+class UserInterface(Screen):
+    def LoadData(self, *args):
+        return show_popup()
 
 
-class ConnectPage(GridLayout):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.cols = 2
-
-        self.add_widget(Label(text="Wczytaj dane"))
-        self.LoadButton = Button(text="Load Data from csv")
-        self.LoadButton.bind(on_click=self.LoadData)
-        self.add_widget(self.LoadButton)
-
-    def LoadData(self, instance):
-        Filechooser()
-
+def show_popup():
+    show = Filechooser()
+    popupWindow = Popup(title="Chose a file", title_align="center", content=show)
+    popupWindow.open()
 
 class Porosity(App):
     def build(self):
-        return ConnectPage()
+        # self.screen_manager = ScreenManager()
+        #
+        # self.first_page = UserInterface()
+        # screen = Screen(name="FirstPage")
+        # screen.add_widget(self.first_page)
+        # self.screen_manager.add_widget(screen)
+        #
+        # self.SelectPage = Filechooser()
+        # screen = Screen(name="Selecting Page")
+        # screen.add_widget(self.SelectPage)
+        # self.screen_manager.add_widget(screen)
+        return UserInterface()
 
 
 if __name__ == '__main__':

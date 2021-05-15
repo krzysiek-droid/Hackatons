@@ -1,22 +1,14 @@
 #:kivy 2.0.0
 
-<Filechooser>:
-    label: label
 
+<Filechooser>:
+    name: "Filechooser"
+    label: label
     orientation: 'vertical'
+    size_hint: 0.7, 0.5
+
 
     BoxLayout:
-
-#        FileChooserListView:
-#            canvas.before:
-#                Color:
-#                    rgb: .4, .5, .5
-#                Rectangle:
-#                    pos: self.pos
-#                    size: self.size
-#
-#            on_selection: root.select(*args)
-
         FileChooserIconView:
             canvas.before:
                 Color:
@@ -24,14 +16,35 @@
                 Rectangle:
                     pos: self.pos
                     size: self.size
-            on_selection: root.select(*args)
+            on_selection: root.select(*args) #root.select jest metodą w klasie Filechooser w main, przerzuca krotke zawierająca (obiekt, ścieżka) do zmiennej label
 
     Label:
         id: label
         size_hint_y: .1
+
         canvas.before:
             Color:
                 rgb: .5, .5, .4
             Rectangle:
                 pos: self.pos
                 size: self.size
+
+<UserInterface>:
+    name: "UserInterface"
+    BoxLayout:
+        size_hint_x: 0.3
+        size_hint_y: 0.3
+        pos_hint_x: 0.5
+        pos_hint_y: 0.5
+
+        orientation: 'vertical'
+
+        Label:
+            text: "Wczytaj dane"
+
+        Button:
+            text: "Select a file"
+            on_release: root.LoadData()
+
+
+
