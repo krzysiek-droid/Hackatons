@@ -1,42 +1,76 @@
 #:kivy 2.0.0
+#:import utils kivy.utils
+<Button>:
+    font_size: 18
+    #background_normal resetuje kolor przycisku - standardowo jest szary, przez co nadanie koloru powoduje wymieszanie go z szarym
+    background_normal: ''
+
+    #kolor w odniesieniu do RGB + przezroczystosc (opacity), można ustawiać nadając X/255.0 - musi byc typu float
+    background_color: (69/255.0, 74/255.0, 82/255.0, .8)
+
+    #utils to biblioteka która posiada metode zaciągającą kolor z jego kodu HEX:
+    #background_color: utils.get_color_from_hex('#ffa12e')
 
 
 <Filechooser>:
     name: "Filechooser"
-    label: label
-    orientation: 'vertical'
+    #definicja zmiennej w klasie
+    filename:filename
 
     BoxLayout:
-        FileChooserIconView:
-            id: filechooser
-            dirselect: True
-            on_selection: label = root.select
+        orientation: 'vertical'
+        size: root.width, root.height
 
-    Label:
-        id: label
+        spacing: 10
+        padding: 10
+
+        BoxLayout:
+            FileChooserIconView:
+                dirselect: True
+                on_selection: filename = root.select(*args)
+
+        Label:
+            id: filename
+            text: f'Ścieżka pliku: {filename}'
+            pos_hint: {"center_x": .5}
+            size_hint: (0.5, 0.5)
 
 
 <UserInterface>:
     name: "UserInterface"
     BoxLayout:
-        size_hint_x: 0.3
-        size_hint_y: 0.3
-        pos_hint_x: 0.5
-        pos_hint_y: 0.5
+        size: root.size
+        pos: root.pos
 
         orientation: 'vertical'
+        spacing: 10
+        padding: 30
 
-        Label:
-            text: "Wczytaj dane"
+        BoxLayout:
+            orientation: 'horizontal'
+            pos_hint: {'x': 0, 'center_y': 1}
 
-        Button:
-            text: "Select a file"
-            on_release: root.LoadData()
+            Label:
+                text: "Wczytaj dane"
+                size: (200, 50)
+                size_hint: (None, None)
+                font_size: 18
+                background_color: (0, 0, 0, 1)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                #text proporties
+                color: (1, 1, 1, 1)
+                bold: True
+                italic: True
+                outline_color: (0, 0, 0)
+                outline_width: 5
 
-    BoxLayout:
-        id: preview
-        orientation: 'vertical'
-
-        Label:
-            text: "Podgląd pliku"
-
+            Button:
+                text: "Select a file"
+                size: (200, 50)
+                size_hint: (None, None)
+                on_release: root.LoadData()

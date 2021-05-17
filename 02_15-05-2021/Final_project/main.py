@@ -1,32 +1,31 @@
 import kivy
 from kivy.app import App
-from kivy.uix.label import Label
-from kivy.uix.gridlayout import GridLayout
-from kivy.uix.textinput import TextInput
-from kivy.uix.button import Button
 from kivy.uix.widget import Widget
-from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.popup import Popup
 
 kivy.require("2.0.0")
 
-class Widgets(Widget):
-    def button(self):
-        show_popup()
 
-class Filechooser(Screen):
+# class Button(Widget):
+#     def button(self):
+#         show_popup()
+
+class Filechooser(Widget):
+
     def select(self, *args):
         try:
             self.label.text = args[1][0]
-            print(self.label.text)
+            print(self.label)
+            return self.label
         except:
             pass
 
 
-class UserInterface(Screen):
+class UserInterface(Widget):
     def LoadData(self, *args):
-        value = show_popup()
+        filename = show_popup()
+
+    pass
 
 
 def show_popup():
@@ -35,10 +34,10 @@ def show_popup():
     popupWindow.open()
 
 
-class Porosity(App):
+class PorosityApp(App):
     def build(self):
         return UserInterface()
 
 
 if __name__ == '__main__':
-    Porosity().run()
+    PorosityApp().run()
