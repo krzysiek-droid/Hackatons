@@ -1,7 +1,7 @@
 #:kivy 2.0.0
 #:import utils kivy.utils
 <Button>:
-    font_size: 18
+    font_size: 13
     #background_normal resetuje kolor przycisku - standardowo jest szary, przez co nadanie koloru powoduje wymieszanie go z szarym
     background_normal: ''
 
@@ -12,10 +12,13 @@
     #background_color: utils.get_color_from_hex('#ffa12e')
 
 
+
+
 <Filechooser>:
-    name: "Filechooser"
+    id: filechooser_name
     #definicja zmiennej w klasie
     filename:filename
+
 
     BoxLayout:
         orientation: 'vertical'
@@ -29,15 +32,24 @@
                 dirselect: True
                 on_selection: filename = root.select(*args)
 
-        Label:
-            id: filename
-            text: f'Ścieżka pliku: {filename}'
-            pos_hint: {"center_x": .5}
-            size_hint: (0.5, 0.5)
+        BoxLayout:
+            orientation: 'horizontal'
 
+            Label:
+                id: filename
+                text: f'Ścieżka pliku: {filename}'
+                pos_hint: {"center_x": .5}
+                size_hint: (0.5, 0.5)
+
+            Button:
+                text: "Select file"
+                size: (100, 50)
+                size_hint: (None, None)
+                on_release: root.dismiss()
 
 <UserInterface>:
-    name: "UserInterface"
+    id: interface_name
+
     BoxLayout:
         size: root.size
         pos: root.pos
@@ -48,13 +60,13 @@
 
         BoxLayout:
             orientation: 'horizontal'
-            pos_hint: {'x': 0, 'center_y': 1}
+            #pos_hint: {"x": 1, "top": 0.5}
 
             Label:
                 text: "Wczytaj dane"
-                size: (200, 50)
+                size: (100, 50)
                 size_hint: (None, None)
-                font_size: 18
+                font_size: 13
                 background_color: (0, 0, 0, 1)
                 canvas.before:
                     Color:
@@ -71,6 +83,25 @@
 
             Button:
                 text: "Select a file"
-                size: (200, 50)
+                size: (100, 50)
                 size_hint: (None, None)
                 on_release: root.LoadData()
+        Label:
+            text: ''
+            size: (100, 50)
+            size_hint: (None, None)
+            font_size: 13
+            background_color: (0, 0, 0, 1)
+            canvas.before:
+                Color:
+                    rgba: self.background_color
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            #text proporties
+            color: (1, 1, 1, 1)
+            bold: True
+            italic: True
+            outline_color: (0, 0, 0)
+            outline_width: 5
+

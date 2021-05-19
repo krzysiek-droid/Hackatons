@@ -6,26 +6,37 @@ from kivy.uix.popup import Popup
 kivy.require("2.0.0")
 
 
-# class Button(Widget):
-#     def button(self):
-#         show_popup()
-
-class Filechooser(Widget):
+class Filechooser(Popup):
+    def __init__(self):
+        super(Filechooser, self).__init__()
+        self.filepath = "blabla"
+        self.is_selected = False
 
     def select(self, *args):
         try:
-            self.label.text = args[1][0]
-            print(self.label)
-            return self.label
+            self.ids.filename.text = args[1][0]
+        except:
+            pass
+
+    def save_path(self, *args):
+        try:
+            self.is_selected = True
+            self.filepath = self.ids.filename.text
+            print(self.filepath)
         except:
             pass
 
 
 class UserInterface(Widget):
-    def LoadData(self, *args):
-        filename = show_popup()
+    def __init__(self):
+        super().__init__()
+        self.filepath = 'Nie wybrano żadnego pliku'
 
-    pass
+    def LoadData(self):
+        selection_screen = Filechooser()
+        selection_screen.open()
+        self.filepath = selection_screen.filepath
+
 
 
 def show_popup():
@@ -36,7 +47,8 @@ def show_popup():
 
 class PorosityApp(App):
     def build(self):
-        return UserInterface()
+        first_screen = UserInterface()
+        return first_screen
 
 
 if __name__ == '__main__':
